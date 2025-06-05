@@ -1,0 +1,54 @@
+body {
+  background-color: black;
+  color: white;
+}
+.headerCine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #ebb822;
+  color: #fff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.headerIcon {
+  font-size: 30px;
+}
+
+.headerLink {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.headerLink a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.headerLink a:hover {
+  font-size: 22px;
+}
+.navItem {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: 0.5s;
+}
+
+.navItem:hover {
+  opacity: 0.8;
+}
+
+.navItem.active {
+  color: #2c3e50;
+}
