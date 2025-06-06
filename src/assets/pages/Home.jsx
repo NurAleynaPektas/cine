@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <div className="home-movie-container">
-      <h1 className="home-movie-title">Today’s Movie 🎥</h1>
+      <h1 className="home-movie-title">Today’s Movie</h1>
 
       {trailerKey && (
         <iframe

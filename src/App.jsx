@@ -10,16 +10,32 @@ import Catalog from "./assets/pages/Catalog";
 import Library from "./assets/pages/Library";
 import "./App.css";
 import { FaFilm } from "react-icons/fa";
-
+import { useEffect, useState } from "react";
 
 function App() {
+  const [animate, setAnimate] = useState(false);
+
+  useEffect(() => {
+    setAnimate(true);
+  }, []);
   return (
     <Router>
       <header className="headerCine">
         <div className="logo">
-          <FaFilm className="headerIcon" />
-          <span className="logoText">CinePlus</span>
+          <span className="emoji">🎥</span>
+          <span className="logoText">
+            {"CinePlus".split("").map((char, index) => (
+              <span
+                key={index}
+                className="letter"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {char}
+              </span>
+            ))}
+          </span>
         </div>
+
         <div className="headerLink">
           <NavLink
             to="/"
