@@ -1,6 +1,17 @@
 const API_KEY = "6c6ff1eefb34466f1e524e319f306b8f";
 const BASE_URL = "https://api.themoviedb.org/3";
 
+export const fetchTrailer = async (movieId) => {
+  const res = await fetch(
+    `${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=en-US`
+  );
+  const data = await res.json();
+  const trailer = data.results.find(
+    (video) => video.type === "Trailer" && video.site === "YouTube"
+  );
+  return trailer ? trailer.key : null;
+};
+
 export const fetchTrendingMovies = async () => {
   const res = await fetch(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`);
   const data = await res.json();
@@ -20,4 +31,3 @@ export const fetchMoviesByGenre = async (genreId) => {
   const data = await res.json();
   return data.results;
 };
-  

@@ -1,14 +1,13 @@
 body {
-  background-color: black;
-  color: white;
+  background-color: #141414;
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
 }
 .headerCine {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background-color: #ebb822;
-  color: #fff;
 }
 
 .logo {
@@ -50,5 +49,6 @@ body {
 }
 
 .navItem.active {
-  color: #2c3e50;
+  color: #e50914;
+  font-size: 22px;
 }
