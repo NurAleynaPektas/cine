@@ -2,7 +2,10 @@ body {
   background-color: #141414;
   color: #ffffff;
   font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
 }
+
 .headerCine {
   display: flex;
   align-items: center;
@@ -10,6 +13,51 @@ body {
   padding: 20px;
 }
 
+/* Tablet ve altı için flex yönünü değiştir, üstte logo, altta menü */
+@media (max-width: 768px) {
+  .headerCine {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 10px;
+  }
+  .headerLink {
+    width: 100%;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+}
+
+/* Telefon için daha kompakt */
+@media (max-width: 480px) {
+  .headerCine {
+    padding: 10px 8px;
+  }
+
+  .logo {
+    font-size: 28px;
+    letter-spacing: 2px;
+  }
+
+  .headerLink {
+    gap: 10px;
+  }
+
+  .navItem {
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  .navItem.active {
+    font-size: 16px;
+  }
+
+  .headerLink a:hover {
+    font-size: 16px;
+  }
+}
+
+/* Logo */
 .logo {
   display: flex;
   align-items: center;
@@ -42,11 +90,14 @@ body {
 .headerLink a:hover {
   font-size: 22px;
 }
+
 .navItem {
   text-decoration: none;
   color: #fff;
   font-weight: bold;
   transition: 0.5s;
+  padding: 8px 12px;
+  border-radius: 4px;
 }
 
 .navItem:hover {
@@ -74,4 +125,3 @@ body {
   opacity: 0;
   animation: dropIn 0.5s ease forwards;
 }
-

@@ -1,0 +1,69 @@
+
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); 
+  gap: 15px;
+}
+
+/* Kartlar */
+.library-grid > div {
+  background-color: #1e1e1e;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* ortala */
+}
+
+.library-grid > div:hover {
+  transform: scale(1.02);
+}
+
+/* Resim: Sabit genişlik, yüksekliği otomatik */
+.library-grid img {
+  width: 180px; /* burayı istediğin gibi küçültebilirsin */
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Film başlığı */
+.library-grid h3 {
+  font-size: 1rem;
+  margin: 8px 0 0 0;
+  text-align: center;
+}
+
+/* Kaldır Butonu */
+.library-remove-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.library-remove-btn:hover {
+  background-color: #b30f0f;
+}
+
+/* Responsive ayarlar */
+@media (max-width: 900px) {
+  .library-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .library-grid {
+    grid-template-columns: 1fr;
+  }
+}

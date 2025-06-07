@@ -34,6 +34,21 @@
 .catalog-movie-grid > div:hover {
   transform: scale(1.03);
 }
+.loading-spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #ccc;
+  border-top: 6px solid #e50914;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 100px auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* Responsive ayarlar */
 @media (max-width: 1200px) {

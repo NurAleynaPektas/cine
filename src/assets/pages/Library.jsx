@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { getLibrary, removeFromLibrary } from "../utils/library";
-
+import "../pages/Home.modules.css";
+import "../pages/Library.modules.css";
+import { toast } from "react-toastify";
 export default function Library() {
   const [movies, setMovies] = useState([]);
 
@@ -9,31 +11,21 @@ export default function Library() {
     setMovies(saved);
   }, []);
 
-  const handleRemove = (id) => {
+  const handleRemove = (id, title) => {
     removeFromLibrary(id);
     setMovies((prev) => prev.filter((m) => m.id !== id));
+    toast.info(` "${title}" has been removed from your library.`);
   };
 
   return (
-    <div>
-      <h1>🎯 Kütüphane</h1>
-      {movies.length === 0 && <p>Henüz film eklemediniz.</p>}
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
-          gap: "20px",
-        }}
-      >
+    <div className="home-movie-container">
+      <h1 className="home-movie-title"> My Movie Library</h1>
+      {movies.length === 0 && (
+        <p>"Your library is empty, start adding your favorite movies !"</p>
+      )}
+      <div className="library-grid">
         {movies.map((movie) => (
-          <div
-            key={movie.id}
-            style={{
-              border: "1px solid #ddd",
-              padding: "10px",
-              borderRadius: "5px",
-            }}
-          >
+          <div key={movie.id}>
             <img
               src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
               alt={movie.title}
@@ -41,17 +33,10 @@ export default function Library() {
             />
             <h3>{movie.title}</h3>
             <button
-              onClick={() => handleRemove(movie.id)}
-              style={{
-                marginTop: "10px",
-                padding: "5px 10px",
-                backgroundColor: "#e74c3c",
-                border: "none",
-                borderRadius: "4px",
-                cursor: "pointer",
-              }}
+              className="library-remove-btn"
+              onClick={() => handleRemove(movie.id, movie.title)}
             >
-              Kaldır
+              - Remove from Library
             </button>
           </div>
         ))}

@@ -5,12 +5,16 @@ export const getLibrary = () => {
   return data ? JSON.parse(data) : [];
 };
 
+// utils/library.js
+
 export const addToLibrary = (movie) => {
   const current = getLibrary();
   const isAlreadyAdded = current.some((item) => item.id === movie.id);
   if (!isAlreadyAdded) {
     localStorage.setItem(LIBRARY_KEY, JSON.stringify([...current, movie]));
+    return true;
   }
+  return false;
 };
 
 export const removeFromLibrary = (movieId) => {

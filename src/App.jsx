@@ -11,6 +11,8 @@ import Library from "./assets/pages/Library";
 import "./App.css";
 import { FaFilm } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [animate, setAnimate] = useState(false);
@@ -20,6 +22,18 @@ function App() {
   }, []);
   return (
     <Router>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <header className="headerCine">
         <div className="logo">
           <span className="emoji">🎥</span>
