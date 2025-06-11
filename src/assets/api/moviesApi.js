@@ -34,8 +34,20 @@ export const fetchMoviesByGenre = async (genreId) => {
 
 export async function fetchPopularMovies() {
   const response = await fetch(
-    `https://api.themoviedb.org/3/movie/popular?api_key=YOUR_API_KEY&language=en-US&page=1`
+    `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
   );
   const data = await response.json();
   return data.results;
+}
+
+export async function fetchUpcomingMovies() {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/movie/upcoming?api_key=${API_KEY}&language=tr-TR&page=1`
+    );
+    const data = await response.json();
+    return data.results;
+  } catch (error) {
+    console.error("Something went wrong !", error);
+  }
 }
