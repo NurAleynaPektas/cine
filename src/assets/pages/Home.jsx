@@ -27,6 +27,7 @@ export default function Home() {
   useEffect(() => {
     async function loadUpcomingMovies() {
       const upcoming = await fetchUpcomingMovies();
+      console.log(upcoming);
       setUpcomingMovies(upcoming);
     }
 
@@ -60,15 +61,22 @@ export default function Home() {
       <div>
         <h2 className="home-movie-title">Upcoming Movie</h2>
         {upcomingMovies.length > 0 && (
-          <div className="home-movie-card">
-            <div className="home-movie-info">
+          <div className="home-movie-info-upcoming">
+            <div className="movie-poster-upcoming">
               <img
                 src={`https://image.tmdb.org/t/p/w300${upcomingMovies[0].poster_path}`}
                 alt=""
               />
-              <h2 className="movie-title">{upcomingMovies[0].title}</h2>
-              <p className="movie-overview">{upcomingMovies[0].overview}</p>
+              <span className="movie-rating-upcoming">
+                {upcomingMovies[0].release_date}
+              </span>
+              <span className="movie-rating-upcoming">
+                {upcomingMovies[0].vote_average}/10
+              </span>
             </div>
+
+            <h2 className="movie-title">{upcomingMovies[0].title}</h2>
+            <p className="movie-overview">{upcomingMovies[0].overview}</p>
           </div>
         )}
       </div>
