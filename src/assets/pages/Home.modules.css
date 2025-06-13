@@ -137,30 +137,31 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.75);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
-  animation: fadeIn 0.3s ease-in-out;
 }
 
 .modal-content {
-  position: relative;
-  background: #111;
+  background-color: #222;
   padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
-  animation: slideUp 0.4s ease-out;
-  max-width: 90%;
-}
+  border-radius: 10px;
+  width: 100%;
+  max-width: 700px;
+  color: #fff;
+  position: relative;
 
+  box-sizing: border-box;
+  margin: 0 auto;
+}
 .modal-close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 8px;
+  right: 8px;
   background: #e50914;
   color: white;
   border: none;
@@ -168,6 +169,12 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
 }
 
 .modal-close-btn:hover {
@@ -175,6 +182,7 @@
   transform: scale(1.1);
   transition: 0.3s;
 }
+
 
 /* Animasyonlar */
 @keyframes fadeIn {
@@ -269,5 +277,9 @@
 
   .modal-content iframe {
     height: 180px;
+  }
+  .modal-content {
+    width: 95%;
+    padding: 15px;
   }
 }

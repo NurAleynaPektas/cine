@@ -72,24 +72,26 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
 }
 
 .modal-content {
   background-color: #222;
   padding: 20px;
   border-radius: 10px;
+  width: 100%;
   max-width: 700px;
-  width: 90%;
   color: #fff;
   position: relative;
+
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .modal-content iframe {
@@ -99,8 +101,8 @@
 }
 .modal-close-button {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 8px;
+  right: 8px;
   background: #e50914;
   color: white;
   border: none;
@@ -108,7 +110,14 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
 }
+
 .modal-close-button:hover {
   background: #7a0c0c;
   transform: scale(1.1);
@@ -156,5 +165,9 @@
   .modal-content button {
     font-size: 14px;
     padding: 6px 12px;
+  }
+  .modal-content {
+    width: 95%;
+    padding: 15px;
   }
 }
