@@ -125,3 +125,35 @@ body {
   opacity: 0;
   animation: dropIn 0.5s ease forwards;
 }
+
+/*LOADER CSS*/
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #e50914;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/*SCROLLUP CSS*/
+
+@keyframes blink {
+  0%,
+  100% {
+    box-shadow: 0 0 10px 3px #800020;
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 20px 6px #eeebeb;
+    transform: scale(1.1);
+  }
+}

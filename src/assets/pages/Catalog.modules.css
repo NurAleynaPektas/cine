@@ -48,6 +48,43 @@
   }
 }
 
+/*PAGİNATİON*/
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+  user-select: none;
+}
+
+.pagination button {
+  padding: 8px 15px;
+  margin: 0 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e50914;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #b2070f;
+}
+
+.pagination span {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #fff;
+  vertical-align: middle;
+}
+
+
 /* Responsive ayarlar */
 @media (max-width: 1200px) {
   .catalog-movie-grid {
