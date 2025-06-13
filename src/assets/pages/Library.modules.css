@@ -1,7 +1,6 @@
-
 .library-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); 
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
 }
 
@@ -65,5 +64,97 @@
 @media (max-width: 500px) {
   .library-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/*MODAL LİBRARY CSS*/
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 700px;
+  width: 90%;
+  color: #fff;
+  position: relative;
+}
+
+.modal-content iframe {
+  width: 100%;
+  height: 400px;
+  border-radius: 8px;
+}
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: #e50914;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.modal-close-button:hover {
+  background: #7a0c0c;
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+/* Tablet için */
+@media (max-width: 768px) {
+  .modal-content iframe {
+    height: 300px;
+  }
+
+  .modal-content {
+    padding: 15px;
+  }
+
+  .modal-content h2 {
+    font-size: 20px;
+  }
+
+  .modal-content p {
+    font-size: 16px;
+  }
+
+  .modal-content button {
+    font-size: 16px;
+    padding: 8px 14px;
+  }
+}
+
+/* Telefon için */
+@media (max-width: 480px) {
+  .modal-content iframe {
+    height: 220px;
+  }
+
+  .modal-content h2 {
+    font-size: 18px;
+  }
+
+  .modal-content p {
+    font-size: 14px;
+  }
+
+  .modal-content button {
+    font-size: 14px;
+    padding: 6px 12px;
   }
 }

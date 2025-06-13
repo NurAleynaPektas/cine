@@ -16,7 +16,7 @@ export default function Modal({ trailerKey, onClose }) {
           allowFullScreen
         />
         <button className="modal-close-btn" onClick={onClose}>
-          ✖
+          X
         </button>
       </div>
     </div>

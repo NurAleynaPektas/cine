@@ -7,7 +7,7 @@ export async function fetchAllMovies(page = 1) {
     `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`
   );
   const data = await response.json();
-  return data; 
+  return data;
 }
 
 export const fetchTrailer = async (movieId) => {
@@ -20,7 +20,6 @@ export const fetchTrailer = async (movieId) => {
   );
   return trailer ? trailer.key : null;
 };
-
 export const fetchTrendingMovies = async () => {
   const res = await fetch(
     `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=en-US`

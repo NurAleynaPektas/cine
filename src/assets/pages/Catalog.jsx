@@ -184,11 +184,12 @@ export default function Catalog() {
 
             <h2 style={{ color: "#fff" }}>{selectedMovie.title}</h2>
             <p style={{ color: "#ccc" }}>
-              🗓️ Release Date :{" "}
+              <strong> 🗓️ Release Date :</strong>{" "}
               {selectedMovie.release_date.replaceAll("-", " ")}
             </p>
             <p style={{ color: "#ccc" }}>
-              ⭐ Average Rating : {Math.floor(selectedMovie.vote_average)}/10
+              <strong>⭐ Average Rating :</strong>
+              {Math.floor(selectedMovie.vote_average)}/10
             </p>
           </div>
         </div>

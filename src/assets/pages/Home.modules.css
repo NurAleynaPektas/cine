@@ -159,22 +159,21 @@
 
 .modal-close-btn {
   position: absolute;
-  top: -12px;
-  right: -12px;
-  background: white;
-  color: black;
+  top: 10px;
+  right: 15px;
+  background: #e50914;
+  color: white;
   border: none;
-  font-size: 18px;
-  font-weight: bold;
   border-radius: 50%;
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   cursor: pointer;
-  transition: background-color 0.3s;
 }
 
 .modal-close-btn:hover {
-  background: #ccc;
+  background: #7a0c0c;
+  transform: scale(1.1);
+  transition: 0.3s;
 }
 
 /* Animasyonlar */

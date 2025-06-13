@@ -84,7 +84,6 @@
   vertical-align: middle;
 }
 
-
 /* Responsive ayarlar */
 @media (max-width: 1200px) {
   .catalog-movie-grid {
@@ -117,7 +116,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,4 +144,9 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
+}
+.modal-close:hover {
+  background: #7a0c0c;
+  transform: scale(1.1);
+  transition: 0.3s;
 }
