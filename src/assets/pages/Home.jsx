@@ -4,7 +4,7 @@ import {
   fetchTrailer,
   fetchUpcomingMovies,
 } from "../api/moviesApi";
-import Modal from "../pages/Modal"; 
+import Modal from "../pages/Modal";
 import "../pages/Home.modules.css";
 
 export default function Home() {
@@ -80,10 +80,11 @@ export default function Home() {
             />
             <div className="movie-info-upcoming-rating">
               <span className="movie-rating-upcoming">
-                {upcomingMovies[0].release_date.replaceAll("-", " ")}
+                🗓️ : {upcomingMovies[0].release_date.replaceAll("-", " ")}
               </span>
               <span className="movie-rating-upcoming">
-                {Math.floor(upcomingMovies[0].vote_average)}/10
+                ⭐ : {Math.floor(upcomingMovies[0].vote_average)}
+                /10
               </span>
             </div>
           </div>

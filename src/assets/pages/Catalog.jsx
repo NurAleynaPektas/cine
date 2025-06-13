@@ -3,6 +3,7 @@ import {
   fetchGenres,
   fetchMoviesByGenre,
   fetchAllMovies,
+  fetchTrailer,
 } from "../api/moviesApi";
 import { addToLibrary } from "../utils/library";
 import "../pages/Home.modules.css";
@@ -14,16 +15,18 @@ export default function Catalog() {
   const [selectedGenre, setSelectedGenre] = useState("");
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
-
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  // Türleri çek
+  // Modal durumları
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [trailerKey, setTrailerKey] = useState(null);
+
   useEffect(() => {
     fetchGenres().then(setGenres);
   }, []);
 
-  // Sayfa veya tür değiştiğinde filmleri çek
   useEffect(() => {
     setLoading(true);
     if (selectedGenre) {
@@ -43,7 +46,6 @@ export default function Catalog() {
     }
   }, [selectedGenre, page]);
 
-  // Tür değişince sayfayı 1 yap
   useEffect(() => {
     setPage(1);
   }, [selectedGenre]);
@@ -55,6 +57,13 @@ export default function Catalog() {
     } else {
       toast.warning(`⚠️ "${movie.title}" is already in your library.`);
     }
+  };
+
+  const handleOpenModal = async (movie) => {
+    setSelectedMovie(movie);
+    setIsModalOpen(true);
+    const key = await fetchTrailer(movie.id);
+    setTrailerKey(key);
   };
 
   return (
@@ -102,7 +111,12 @@ export default function Catalog() {
                 <img
                   src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
                   alt={movie.title}
-                  style={{ width: "100%", borderRadius: "5px" }}
+                  style={{
+                    width: "100%",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => handleOpenModal(movie)}
                 />
                 <h3>{movie.title}</h3>
                 <button
@@ -123,7 +137,6 @@ export default function Catalog() {
             ))}
           </div>
 
-          {/* Pagination Kontrolleri */}
           <div className="pagination">
             <button
               onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
@@ -142,6 +155,43 @@ export default function Catalog() {
             </button>
           </div>
         </>
+      )}
+
+      {/* MODAL */}
+      {isModalOpen && selectedMovie && (
+        <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="modal-close"
+              onClick={() => setIsModalOpen(false)}
+            >
+              X
+            </button>
+
+            {trailerKey ? (
+              <iframe
+                width="100%"
+                height="315"
+                src={`https://www.youtube.com/embed/${trailerKey}`}
+                title="Trailer"
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+              ></iframe>
+            ) : (
+              <p style={{ color: "#fff" }}>Trailer bulunamadı</p>
+            )}
+
+            <h2 style={{ color: "#fff" }}>{selectedMovie.title}</h2>
+            <p style={{ color: "#ccc" }}>
+              🗓️ Release Date :{" "}
+              {selectedMovie.release_date.replaceAll("-", " ")}
+            </p>
+            <p style={{ color: "#ccc" }}>
+              ⭐ Average Rating : {Math.floor(selectedMovie.vote_average)}/10
+            </p>
+          </div>
+        </div>
       )}
     </div>
   );
