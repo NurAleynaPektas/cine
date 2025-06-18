@@ -19,6 +19,16 @@
   gap: 20px;
 }
 
+/*Catalog search place*/
+.catalog-search-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
 /* Kartlar */
 .catalog-movie-grid > div {
   background-color: #1e1e1e;
@@ -164,4 +174,3 @@
   transform: scale(1.1);
   transition: 0.3s;
 }
-

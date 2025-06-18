@@ -2,6 +2,16 @@ const API_KEY = "6c6ff1eefb34466f1e524e319f306b8f";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 // moviesApi.js içinde
+export const fetchMoviesByQuery = async (query, page = 1) => {
+  const res = await fetch(
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(
+      query
+    )}&language=en-US&page=${page}`
+  );
+  const data = await res.json();
+  return data;
+};
+
 export async function fetchAllMovies(page = 1) {
   const response = await fetch(
     `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`

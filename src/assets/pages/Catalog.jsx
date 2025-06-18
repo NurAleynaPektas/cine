@@ -4,6 +4,7 @@ import {
   fetchMoviesByGenre,
   fetchAllMovies,
   fetchTrailer,
+  fetchMoviesByQuery,
 } from "../api/moviesApi";
 import { addToLibrary } from "../utils/library";
 import "../pages/Home.modules.css";
@@ -18,10 +19,14 @@ export default function Catalog() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  // Modal durumları
+  // Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [trailerKey, setTrailerKey] = useState(null);
+
+  // Search
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchMode, setIsSearchMode] = useState(false);
 
   useEffect(() => {
     fetchGenres().then(setGenres);
@@ -29,7 +34,15 @@ export default function Catalog() {
 
   useEffect(() => {
     setLoading(true);
-    if (selectedGenre) {
+
+    if (isSearchMode && searchQuery.trim()) {
+      fetchMoviesByQuery(searchQuery, page)
+        .then((data) => {
+          setMovies(data.results);
+          setTotalPages(Math.min(data.total_pages, 50));
+        })
+        .finally(() => setLoading(false));
+    } else if (selectedGenre) {
       fetchMoviesByGenre(selectedGenre, page)
         .then((data) => {
           setMovies(data.results);
@@ -44,11 +57,11 @@ export default function Catalog() {
         })
         .finally(() => setLoading(false));
     }
-  }, [selectedGenre, page]);
+  }, [selectedGenre, page, searchQuery, isSearchMode]);
 
   useEffect(() => {
     setPage(1);
-  }, [selectedGenre]);
+  }, [selectedGenre, searchQuery]);
 
   const handleAddToLibrary = (movie) => {
     const added = addToLibrary(movie);
@@ -70,6 +83,63 @@ export default function Catalog() {
     <div className="home-movie-container">
       <h1 className="home-movie-title">Welcome to the CinePlus Catalog</h1>
 
+     
+      <div className="catalog-search-box">
+        <input
+          type="text"
+          placeholder="Search movie by title..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          style={{
+            padding: "10px",
+            fontSize: "18px",
+            width: "100%",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+            marginBottom: "10px",
+          }}
+        />
+        <div style={{ display: "flex", gap: "10px" }}>
+          <button
+            onClick={() => {
+              setIsSearchMode(true);
+              setSelectedGenre("");
+              setPage(1);
+            }}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#e50914",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            Search
+          </button>
+          {isSearchMode && (
+            <button
+              onClick={() => {
+                setIsSearchMode(false);
+                setSearchQuery("");
+                setPage(1);
+              }}
+              style={{
+                padding: "10px 20px",
+                backgroundColor: "#444",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+              }}
+            >
+              Clear Search
+            </button>
+          )}
+        </div>
+      </div>
+
+     
       <div className="catalog-custom-select">
         <select
           style={{
@@ -83,7 +153,10 @@ export default function Catalog() {
             color: "#fff",
           }}
           value={selectedGenre}
-          onChange={(e) => setSelectedGenre(e.target.value)}
+          onChange={(e) => {
+            setSelectedGenre(e.target.value);
+            setIsSearchMode(false); 
+          }}
         >
           <option value="">🎬 Genres</option>
           {genres.map((genre) => (
@@ -94,6 +167,7 @@ export default function Catalog() {
         </select>
       </div>
 
+      {/* Movie Cards */}
       {loading ? (
         <p style={{ fontSize: "18px", color: "#999" }}>Loading movies...</p>
       ) : (
@@ -137,6 +211,7 @@ export default function Catalog() {
             ))}
           </div>
 
+          {/* Pagination */}
           <div className="pagination">
             <button
               onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
@@ -157,7 +232,7 @@ export default function Catalog() {
         </>
       )}
 
-      {/* MODAL */}
+      {/* Modal */}
       {isModalOpen && selectedMovie && (
         <div className="modal-overlay" onClick={() => setIsModalOpen(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
