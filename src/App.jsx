@@ -13,6 +13,7 @@ import Library from "./assets/pages/Library";
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "./assets/pages/Footer";
 
 function Loader() {
   return (
@@ -115,6 +116,7 @@ function App() {
           <Route path="/library" element={<Library />} />
         </Routes>
       </main>
+      <Footer />
     </Router>
   );
 }
