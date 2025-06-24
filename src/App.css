@@ -107,6 +107,7 @@ body {
 .navItem.active {
   color: #e50914;
   font-size: 22px;
+  border-bottom: 2px solid #e50914;
 }
 
 @keyframes dropIn {

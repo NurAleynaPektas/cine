@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./assets/pages/ScrollUp";
 import Home from "./assets/pages/Home";
 import Catalog from "./assets/pages/Catalog";
 import Library from "./assets/pages/Library";
-
 import "./App.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Footer from "./assets/pages/Footer";
+import Register from "./assets/pages/Register";
+import PrivateRoute from "./assets/pages/PrivateRoute";
+import Login from "./assets/pages/Login";
+import Header from "./assets/pages/Header";
 
 function Loader() {
   return (
@@ -65,55 +63,28 @@ function App() {
         theme="dark"
       />
       <ScrollToTop />
-      <header className="headerCine">
-        <div className="logo">
-          <span className="emoji">🎥</span>
-          <span className="logoText">
-            {"CinePlus".split("").map((char, index) => (
-              <span
-                key={index}
-                className="letter"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                {char}
-              </span>
-            ))}
-          </span>
-        </div>
-
-        <div className="headerLink">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? "navItem active" : "navItem"
-            }
-          >
-            HOME
-          </NavLink>
-          <NavLink
-            to="/catalog"
-            className={({ isActive }) =>
-              isActive ? "navItem active" : "navItem"
-            }
-          >
-            CATALOG
-          </NavLink>
-          <NavLink
-            to="/library"
-            className={({ isActive }) =>
-              isActive ? "navItem active" : "navItem"
-            }
-          >
-            LIBRARY
-          </NavLink>
-        </div>
-      </header>
-
+      <Header />
       <main style={{ padding: "20px" }}>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/catalog" element={<Catalog />} />
-          <Route path="/library" element={<Library />} />
+          <Route
+            path="/catalog"
+            element={
+              <PrivateRoute>
+                <Catalog />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/library"
+            element={
+              <PrivateRoute>
+                <Library />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </main>
       <Footer />
