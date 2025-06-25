@@ -1,7 +1,7 @@
 const API_KEY = "6c6ff1eefb34466f1e524e319f306b8f";
 const BASE_URL = "https://api.themoviedb.org/3";
 
-// moviesApi.js içinde
+
 export const fetchMoviesByQuery = async (query, page = 1) => {
   const res = await fetch(
     `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(
@@ -72,4 +72,13 @@ export async function fetchUpcomingMovies() {
   } catch (error) {
     console.error("Something went wrong !", error);
   }
+}
+
+
+export async function fetchTopRatedMovies() {
+  const res = await fetch(
+    `${BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+  );
+  const data = await res.json();
+  return data.results;
 }
