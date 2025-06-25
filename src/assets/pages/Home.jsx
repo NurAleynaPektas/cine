@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from "react";
+import { useState, useEffect } from "react";
+import Slider from "react-slick";
 import {
   fetchTrendingMovies,
   fetchTrailer,
@@ -6,6 +7,8 @@ import {
   fetchTopRatedMovies,
 } from "../api/moviesApi";
 import Modal from "../pages/Modal";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import "../pages/Home.modules.css";
 
 export default function Home() {
@@ -19,8 +22,6 @@ export default function Home() {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [topRatedTrailerKey, setTopRatedTrailerKey] = useState(null);
   const [isTopRatedModalOpen, setIsTopRatedModalOpen] = useState(false);
-
-  const upcomingSliderRef = useRef(null);
 
   useEffect(() => {
     async function loadMovies() {
@@ -47,27 +48,28 @@ export default function Home() {
     loadTopRatedMovies();
   }, []);
 
-  // Otomatik kaydırma efekti
-  useEffect(() => {
-    const slider = upcomingSliderRef.current;
-    if (!slider) return;
-
-    let scrollAmount = 0;
-    const scrollStep = 1; // px hız
-    const delay = 10; // ms
-
-    const intervalId = setInterval(() => {
-      if (scrollAmount >= slider.scrollWidth - slider.clientWidth) {
-        scrollAmount = 0;
-        slider.scrollTo({ left: 0, behavior: "smooth" });
-      } else {
-        scrollAmount += scrollStep;
-        slider.scrollLeft = scrollAmount; 
-      }
-    }, delay);
-
-    return () => clearInterval(intervalId);
-  }, [upcomingMovies]);
+  const sliderSettings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 3 },
+      },
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 480,
+        settings: { slidesToShow: 1 },
+      },
+    ],
+  };
 
   return (
     <div className="home-movie-container">
@@ -94,10 +96,10 @@ export default function Home() {
         )}
       </div>
 
-      {/* Upcoming Slider - Oklar Kaldırıldı */}
+      {/* Upcoming Slider */}
       <h2 className="home-movie-title">Upcoming Movies</h2>
-      <div className="upcoming-slider-wrapper">
-        <div className="upcoming-slider" ref={upcomingSliderRef}>
+      <div className="upcoming-slider-container">
+        <Slider {...sliderSettings}>
           {upcomingMovies.map((movie) => (
             <div
               key={movie.id}
@@ -116,7 +118,7 @@ export default function Home() {
               <p className="upcoming-title">{movie.title}</p>
             </div>
           ))}
-        </div>
+        </Slider>
       </div>
 
       {/* Top Rated */}

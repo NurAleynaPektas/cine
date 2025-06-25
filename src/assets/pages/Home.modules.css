@@ -1,4 +1,4 @@
-/*TODAY CSS*/
+/* TODAY CSS */
 .home-movie-container {
   padding: 40px 20px;
   background-color: #000;
@@ -15,6 +15,7 @@
   letter-spacing: 5px;
   padding-bottom: 5px;
   border-bottom: 2px solid #e50914;
+  margin-bottom: 20px;
 }
 
 .home-movie-card {
@@ -53,18 +54,6 @@
   transform: scale(1.02);
 }
 
-.home-movie-image {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-  transition: transform 0.3s ease;
-}
-
-.home-movie-image:hover {
-  transform: scale(1.02);
-}
-
 .home-movie-info {
   max-width: 600px;
   text-align: left;
@@ -90,39 +79,31 @@
   font-family: "Open Sans", sans-serif;
 }
 
-/* UPCOMING SLIDER CSS */
-.upcoming-slider-wrapper {
-  position: relative;
+/* UPCOMING SLIDER CONTAINER */
+.upcoming-slider-container {
   width: 100%;
-  overflow: hidden;
-  padding: 0 40px;
-  box-sizing: border-box;
-  margin-top: 20px;
+  max-width: 1300px;
+  margin: 40px auto;
+  position: relative;
 }
 
-.upcoming-slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  gap: 20px;
-  padding: 20px 10px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+/* react-slick slider override */
+.slick-slider {
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 .upcoming-card {
-  min-width: 220px;
-  flex-shrink: 0;
+  display: flex !important; /* react-slick override */
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 0 5px;
   background-color: #111;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(229, 9, 20, 0.2);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
 }
 
 .upcoming-card:hover {
@@ -142,8 +123,6 @@
   font-size: 16px;
   text-align: center;
 }
-
-/* ** Ok butonlarının CSS'i tamamen kaldırıldı ** */
 
 /* TOP RATED CSS */
 .home-top-rated-container {
@@ -182,7 +161,7 @@
   font-family: "Open Sans", sans-serif;
 }
 
-/* UPCOMIN MODAL CSS */
+/* MODAL CSS */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -233,28 +212,7 @@
   transition: 0.3s;
 }
 
-/* Animasyonlar */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-/* ✅ Responsive */
+/* Responsive */
 @media (max-width: 768px) {
   .home-movie-card {
     flex-direction: column;
@@ -270,23 +228,6 @@
     height: 220px;
   }
 
-  .home-movie-info-upcoming {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .movie-info-upcoming-desc {
-    max-width: 100%;
-    padding: 10px 0;
-    align-items: center;
-  }
-
-  .movie-info-upcoming-rating {
-    justify-content: center;
-    gap: 10px;
-  }
-
   .movie-title {
     font-size: 24px;
   }
@@ -294,15 +235,6 @@
   .movie-overview {
     font-size: 14px;
     line-height: 1.5;
-  }
-
-  .movie-poster-upcoming img {
-    width: 100%;
-    max-width: 280px;
-  }
-
-  .modal-content {
-    padding: 10px;
   }
 
   .modal-content iframe {
