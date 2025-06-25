@@ -23,7 +23,7 @@ const Register = () => {
     const { name, email, password } = formData;
 
     if (!name || !email || !password) {
-      toast.error("Lütfen tüm alanları doldurun.");
+      toast.error("Please fill in all fields !");
       return;
     }
 
@@ -34,24 +34,24 @@ const Register = () => {
       );
 
       localStorage.setItem("token", res.data.token);
-      toast.success("Kayıt başarılı!");
+      toast.success("Successfully registered !");
       navigate("/catalog");
     } catch (error) {
-      if (error.response?.status === 409) {
-        toast.error("Bu e-posta zaten kayıtlı!");
+      if (error.response?.status === 400) {
+        toast.error("This email is already registered !");
       } else {
-        toast.error("Kayıt başarısız!");
+        toast.error("Something went wrong !");
       }
     }
   };
 
   return (
     <form onSubmit={handleSubmit} style={formStyle}>
-      <h2>Kayıt Ol</h2>
+      <h2 style={{ borderBottom: "2px solid #e50914" }}>Register</h2>
       <input
         type="text"
         name="name"
-        placeholder="İsim"
+        placeholder="Name"
         value={formData.name}
         onChange={handleChange}
         style={inputStyle}
@@ -59,7 +59,7 @@ const Register = () => {
       <input
         type="email"
         name="email"
-        placeholder="E-posta"
+        placeholder="E-mail"
         value={formData.email}
         onChange={handleChange}
         style={inputStyle}
@@ -67,13 +67,13 @@ const Register = () => {
       <input
         type="password"
         name="password"
-        placeholder="Şifre"
+        placeholder="Password"
         value={formData.password}
         onChange={handleChange}
         style={inputStyle}
       />
       <button type="submit" style={buttonStyle}>
-        Kayıt Ol
+        Register
       </button>
     </form>
   );
@@ -82,23 +82,31 @@ const Register = () => {
 const formStyle = {
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
   maxWidth: "400px",
   margin: "50px auto",
-  gap: "15px",
+  gap: "20px",
+  border: "1px solid #e50914",
+  borderRadius: "12px",
+  padding: "10px",
 };
 
 const inputStyle = {
   padding: "10px",
   fontSize: "16px",
+  borderRadius: "8px",
 };
 
 const buttonStyle = {
+  width: "100px",
   padding: "10px",
   fontSize: "16px",
   backgroundColor: "#e50914",
   color: "#fff",
   border: "none",
   cursor: "pointer",
+  borderRadius: "8px",
 };
 
 export default Register;

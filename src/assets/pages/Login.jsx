@@ -14,7 +14,7 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      toast.error("Lütfen tüm alanları doldurun.");
+      toast.error("Please fill in all fields.");
       return;
     }
 
@@ -32,20 +32,20 @@ export default function Login() {
       // token değişimini header'a bildirmek için
       window.dispatchEvent(new Event("storage"));
 
-      toast.success("Giriş başarılı!");
+      toast.success("Successfully logged in !");
       navigate("/catalog");
     } catch (error) {
-      toast.error("Giriş başarısız! Bilgilerinizi kontrol edin.");
+      toast.error("Please check your credentials.");
     }
   };
 
   return (
     <form onSubmit={handleSubmit} style={formStyle}>
-      <h2>Login</h2>
+      <h2 style={{ borderBottom: "2px solid #e50914" }}>Login</h2>
       <input
         type="email"
         name="email"
-        placeholder="E-posta"
+        placeholder="E-mail"
         value={formData.email}
         onChange={handleChange}
         style={inputStyle}
@@ -53,13 +53,13 @@ export default function Login() {
       <input
         type="password"
         name="password"
-        placeholder="Şifre"
+        placeholder="Password"
         value={formData.password}
         onChange={handleChange}
         style={inputStyle}
       />
       <button type="submit" style={buttonStyle}>
-        Giriş Yap
+        Login
       </button>
     </form>
   );
@@ -68,21 +68,29 @@ export default function Login() {
 const formStyle = {
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
   maxWidth: "400px",
   margin: "50px auto",
-  gap: "15px",
+  gap: "20px",
+  border: "1px solid #e50914",
+  borderRadius: "12px",
+  padding: "10px",
 };
 
 const inputStyle = {
   padding: "10px",
   fontSize: "16px",
+  borderRadius: "8px",
 };
 
 const buttonStyle = {
+  width: "100px",
   padding: "10px",
   fontSize: "16px",
   backgroundColor: "#e50914",
   color: "#fff",
   border: "none",
   cursor: "pointer",
+  borderRadius: "8px",
 };
