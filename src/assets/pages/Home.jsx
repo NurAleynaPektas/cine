@@ -40,7 +40,7 @@ export default function Home() {
 
     async function loadTopRatedMovies() {
       const topRated = await fetchTopRatedMovies();
-      setTopRatedMovies(topRated.slice(0, 10)); // 10 film göster
+      setTopRatedMovies(topRated.slice(0, 6)); // 10 film göster
     }
 
     loadMovies();
@@ -94,6 +94,19 @@ export default function Home() {
             <p className="movie-overview">{movies[0].overview}</p>
           </div>
         )}
+        <div className="movie-extra-info">
+          <p className="movie-date">
+            {new Date().toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
+          <p className="movie-rating">
+            <span className="star-icon">⭐</span>
+            <span>{movies[0]?.vote_average?.toFixed(1) ?? "8.5"} / 10</span>
+          </p>
+        </div>
       </div>
 
       {/* Upcoming Slider */}
