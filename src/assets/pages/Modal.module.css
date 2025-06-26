@@ -1,0 +1,73 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 700px;
+  color: #fff;
+  position: relative;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #e50914;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+  transition: 0.3s;
+}
+
+.modalCloseBtn:hover {
+  background: #7a0c0c;
+  transform: scale(1.1);
+}
+
+.modalMovieInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  color: #ccc;
+  margin-top: 10px;
+  border-top: 1px solid #444;
+  padding-top: 10px;
+}
+.starRating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 480px) {
+  .modalMovieInfo {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+}

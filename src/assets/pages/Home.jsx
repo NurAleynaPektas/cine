@@ -17,6 +17,7 @@ export default function Home() {
 
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [upcomingTrailerKey, setUpcomingTrailerKey] = useState(null);
+  const [selectedUpcomingMovie, setSelectedUpcomingMovie] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [topRatedMovies, setTopRatedMovies] = useState([]);
@@ -40,7 +41,7 @@ export default function Home() {
 
     async function loadTopRatedMovies() {
       const topRated = await fetchTopRatedMovies();
-      setTopRatedMovies(topRated.slice(0, 6)); // 10 film göster
+      setTopRatedMovies(topRated.slice(0, 6));
     }
 
     loadMovies();
@@ -56,18 +57,9 @@ export default function Home() {
     slidesToScroll: 1,
     arrows: true,
     responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 3 },
-      },
-      {
-        breakpoint: 768,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 480,
-        settings: { slidesToShow: 1 },
-      },
+      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 768, settings: { slidesToShow: 2 } },
+      { breakpoint: 480, settings: { slidesToShow: 1 } },
     ],
   };
 
@@ -120,6 +112,7 @@ export default function Home() {
               onClick={async () => {
                 const key = await fetchTrailer(movie.id);
                 setUpcomingTrailerKey(key);
+                setSelectedUpcomingMovie(movie);
                 setIsModalOpen(true);
               }}
             >
@@ -162,7 +155,11 @@ export default function Home() {
       {isModalOpen && (
         <Modal
           trailerKey={upcomingTrailerKey}
-          onClose={() => setIsModalOpen(false)}
+          movie={selectedUpcomingMovie}
+          onClose={() => {
+            setIsModalOpen(false);
+            setSelectedUpcomingMovie(null);
+          }}
         />
       )}
 
