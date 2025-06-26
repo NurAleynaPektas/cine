@@ -53,7 +53,7 @@ export default function Home() {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     arrows: true,
     responsive: [
@@ -147,6 +147,18 @@ export default function Home() {
               className="top-rated-image"
             />
             <p className="top-rated-title">{movie.title}</p>
+            <div className="top-rated-extra-info">
+              <span className="top-rated-date">
+                {new Date(movie.release_date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              </span>
+              <span className="top-rated-star">
+                ⭐ {movie.vote_average?.toFixed(1) ?? "8.5"}
+              </span>
+            </div>
           </div>
         ))}
       </div>
