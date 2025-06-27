@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function Header() {
@@ -27,7 +27,7 @@ export default function Header() {
     <header className="headerCine">
       <div className="logo">
         <span className="emoji">🎥</span>
-        <span className="logoText">
+        <Link to="/" className="logoText">
           {"CinePlus".split("").map((char, index) => (
             <span
               key={index}
@@ -37,7 +37,7 @@ export default function Header() {
               {char}
             </span>
           ))}
-        </span>
+        </Link>
       </div>
 
       <div className="headerLink">
