@@ -28,11 +28,8 @@ export default function Login() {
       );
 
       localStorage.setItem("token", res.data.token);
-
-      // token değişimini header'a bildirmek için
       window.dispatchEvent(new Event("storage"));
-
-      toast.success("Successfully logged in !");
+      toast.success("Successfully logged in!");
       navigate("/catalog");
     } catch (error) {
       toast.error("Please check your credentials.");
@@ -61,6 +58,15 @@ export default function Login() {
       <button type="submit" style={buttonStyle}>
         Login
       </button>
+      <p style={{ fontSize: "14px" }}>
+        Don't have an account?{" "}
+        <span
+          style={{ color: "#e50914", cursor: "pointer" }}
+          onClick={() => navigate("/register")}
+        >
+          Register
+        </span>
+      </p>
     </form>
   );
 }

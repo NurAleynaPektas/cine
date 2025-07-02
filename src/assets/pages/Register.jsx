@@ -23,7 +23,7 @@ const Register = () => {
     const { name, email, password } = formData;
 
     if (!name || !email || !password) {
-      toast.error("Please fill in all fields !");
+      toast.error("Please fill in all fields!");
       return;
     }
 
@@ -34,13 +34,13 @@ const Register = () => {
       );
 
       localStorage.setItem("token", res.data.token);
-      toast.success("Successfully registered !");
+      toast.success("Successfully registered!");
       navigate("/catalog");
     } catch (error) {
       if (error.response?.status === 400) {
-        toast.error("This email is already registered !");
+        toast.error("This email is already registered!");
       } else {
-        toast.error("Something went wrong !");
+        toast.error("Something went wrong!");
       }
     }
   };
@@ -75,6 +75,15 @@ const Register = () => {
       <button type="submit" style={buttonStyle}>
         Register
       </button>
+      <p style={{ fontSize: "14px" }}>
+        Already have an account?{" "}
+        <span
+          style={{ color: "#e50914", cursor: "pointer" }}
+          onClick={() => navigate("/login")}
+        >
+          Login
+        </span>
+      </p>
     </form>
   );
 };

@@ -11,10 +11,7 @@ export default function Header() {
     };
 
     window.addEventListener("storage", onStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", onStorageChange);
-    };
+    return () => window.removeEventListener("storage", onStorageChange);
   }, []);
 
   const handleLogout = () => {
@@ -69,7 +66,6 @@ export default function Header() {
               LIBRARY
             </NavLink>
 
-            {/* Logout'u navItem gibi göstermek için span ile */}
             <span
               onClick={handleLogout}
               className="navItem"
@@ -88,24 +84,14 @@ export default function Header() {
             </span>
           </>
         ) : (
-          <>
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive ? "navItem active" : "navItem"
-              }
-            >
-              LOGIN
-            </NavLink>
-            <NavLink
-              to="/register"
-              className={({ isActive }) =>
-                isActive ? "navItem active" : "navItem"
-              }
-            >
-              REGISTER
-            </NavLink>
-          </>
+          <span
+            className="navItem"
+            style={{ cursor: "pointer", fontSize: "24px" }}
+            onClick={() => navigate("/login")}
+            title="Login/Register"
+          >
+            👤
+          </span>
         )}
       </div>
     </header>
