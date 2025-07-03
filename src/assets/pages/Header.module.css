@@ -25,6 +25,29 @@
   display: inline-block;
 }
 
+.letter {
+  display: inline-block;
+  opacity: 0;
+  animation: dropIn 0.5s ease forwards;
+}
+
+@keyframes dropIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rightContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .headerLink {
   display: flex;
   gap: 20px;
@@ -56,32 +79,30 @@
   cursor: pointer;
 }
 
-.letter {
-  display: inline-block;
-  opacity: 0;
-  animation: dropIn 0.5s ease forwards;
+/* Hamburger menü ikonu */
+.hamburger {
+  font-size: 28px;
+  cursor: pointer;
+  color: white;
+  display: none; /* Mobilde aktif olacak */
 }
 
-@keyframes dropIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Yeni container flex düzeni */
-.rightContainer {
+/* Dropdown (mobil menü içeriği) */
+.dropdownMenu {
+  position: absolute;
+  top: 70px;
+  right: 10px;
+  background-color: #111;
+  border: 1px solid #e50914;
+  padding: 10px;
+  border-radius: 8px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 10px;
+  z-index: 1000;
 }
 
-/* Responsive */
-
+/* Tablet ve altı görünüm için */
 @media (max-width: 768px) {
   .headerCine {
     flex-direction: row;
@@ -99,15 +120,12 @@
     display: none;
   }
 
-  .rightContainer {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  .hamburger {
+    display: block;
   }
 
   .headerLink {
-    display: flex;
-    gap: 10px;
+    display: none; /* Menü gizleniyor, sadece hamburger olacak */
   }
 
   .userIcon {
@@ -116,45 +134,19 @@
   }
 
   .navItem {
-    font-size: 14px;
+    font-size: 16px;
     padding: 6px 8px;
   }
 
   .active {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 
+/* Daha küçük telefon görünümü */
 @media (max-width: 480px) {
-  .headerCine {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 8px;
-  }
-
-  .logo {
-    justify-content: flex-start;
-    letter-spacing: 2px;
-  }
-
-  .logoText {
-    display: none;
-  }
-
-  .headerLink {
-    display: flex;
-    gap: 10px;
-  }
-
-  .userIcon {
-    position: static;
-    cursor: pointer;
-  }
-
   .navItem {
-    font-size: 24px;
-    padding: 6px 8px;
+    font-size: 20px;
   }
 
   .active {

@@ -2,9 +2,11 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import { FaUser } from "react-icons/fa";
+
 export default function Header() {
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const onStorageChange = () => {
@@ -39,6 +41,7 @@ export default function Header() {
       </div>
 
       <div className={styles.rightContainer}>
+        {/* Yatay Menü - sadece PC görünümünde aktif olacak */}
         <div className={styles.headerLink}>
           <NavLink
             to="/"
@@ -49,7 +52,7 @@ export default function Header() {
             HOME
           </NavLink>
 
-          {token ? (
+          {token && (
             <>
               <NavLink
                 to="/catalog"
@@ -71,7 +74,6 @@ export default function Header() {
               >
                 LIBRARY
               </NavLink>
-
               <span
                 onClick={handleLogout}
                 className={styles.navItem}
@@ -89,8 +91,18 @@ export default function Header() {
                 LOGOUT
               </span>
             </>
-          ) : null}
+          )}
         </div>
+
+        {/* Hamburger butonu - sadece mobilde aktif olacak */}
+        {token && (
+          <div
+            className={styles.hamburger}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            ☰
+          </div>
+        )}
 
         {/* Kullanıcı ikonu */}
         {!token && (
@@ -103,6 +115,46 @@ export default function Header() {
           </span>
         )}
       </div>
+
+      {/* Mobil menü */}
+      {token && isMenuOpen && (
+        <div className={styles.dropdownMenu}>
+          <NavLink
+            to="/"
+            onClick={() => setIsMenuOpen(false)}
+            className={styles.navItem}
+          >
+            HOME
+          </NavLink>
+          <NavLink
+            to="/catalog"
+            onClick={() => setIsMenuOpen(false)}
+            className={styles.navItem}
+          >
+            CATALOG
+          </NavLink>
+          <NavLink
+            to="/library"
+            onClick={() => setIsMenuOpen(false)}
+            className={styles.navItem}
+          >
+            LIBRARY
+          </NavLink>
+          <span
+            onClick={() => {
+              handleLogout();
+              setIsMenuOpen(false);
+            }}
+            className={styles.navItem}
+            style={{
+              backgroundColor: "#e50914",
+              cursor: "pointer",
+            }}
+          >
+            LOGOUT
+          </span>
+        </div>
+      )}
     </header>
   );
 }

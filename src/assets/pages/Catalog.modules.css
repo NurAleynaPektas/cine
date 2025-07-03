@@ -58,11 +58,15 @@
   }
 }
 
-/*PAGİNATİON*/
 .pagination {
   margin-top: 20px;
   text-align: center;
   user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap; /* Küçük ekranlar için elemanların alt alta geçmesine izin verir */
+  gap: 10px;
 }
 
 .pagination button {
@@ -92,6 +96,23 @@
   font-size: 1rem;
   color: #fff;
   vertical-align: middle;
+}
+
+/* Telefon görünümü için responsive düzenleme */
+@media (max-width: 480px) {
+  .pagination {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pagination button {
+    width: 100%; /* Butonlar ekranı kaplasın */
+    max-width: 200px;
+  }
+
+  .pagination span {
+    font-size: 0.95rem;
+  }
 }
 
 /* Responsive ayarlar */
