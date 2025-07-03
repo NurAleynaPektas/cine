@@ -6,133 +6,7 @@ body {
   padding: 0;
 }
 
-.headerCine {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-}
-
-/* Tablet ve altı için flex yönünü değiştir, üstte logo, altta menü */
-@media (max-width: 768px) {
-  .headerCine {
-    flex-direction: column;
-    gap: 15px;
-    padding: 15px 10px;
-  }
-  .headerLink {
-    width: 100%;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-}
-
-/* Telefon için daha kompakt */
-@media (max-width: 480px) {
-  .headerCine {
-    padding: 10px 8px;
-  }
-
-  .logo {
-    font-size: 28px;
-    letter-spacing: 2px;
-  }
-
-  .headerLink {
-    gap: 10px;
-  }
-
-  .navItem {
-    font-size: 14px;
-    padding: 6px 8px;
-  }
-
-  .navItem.active {
-    font-size: 16px;
-  }
-
-  .headerLink a:hover {
-    font-size: 16px;
-  }
-}
-
-/* Logo */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #ececec;
-  letter-spacing: 3px;
-  text-shadow: 1px 1px 4px rgba(229, 9, 20, 0.8),
-    -1px 1px 4px rgba(229, 9, 20, 0.8), 1px -1px 2px rgba(229, 9, 20, 0.8),
-    -1px -1px 4px rgba(229, 9, 20, 0.8);
-}
-.logoText {
-  text-decoration: none;
-  color: inherit;
-  display: inline-block;
-}
-
-.headerIcon {
-  font-size: 30px;
-}
-
-.headerLink {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-.headerLink a {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-}
-
-.headerLink a:hover {
-  font-size: 22px;
-}
-
-.navItem {
-  text-decoration: none;
-  color: #fff;
-  font-weight: bold;
-  transition: 0.5s;
-  padding: 8px 12px;
-  border-radius: 4px;
-}
-
-.navItem:hover {
-  opacity: 0.8;
-}
-
-.navItem.active {
-  color: #e50914;
-  font-size: 22px;
-  border-bottom: 2px solid #e50914;
-}
-
-@keyframes dropIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.letter {
-  display: inline-block;
-  opacity: 0;
-  animation: dropIn 0.5s ease forwards;
-}
-
-/*LOADER CSS*/
+/* LOADER */
 .spinner {
   border: 8px solid #f3f3f3;
   border-top: 8px solid #e50914;
@@ -150,8 +24,8 @@ body {
     transform: rotate(360deg);
   }
 }
-/*SCROLLUP CSS*/
 
+/* SCROLL-UP */
 @keyframes blink {
   0%,
   100% {
