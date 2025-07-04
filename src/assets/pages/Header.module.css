@@ -108,7 +108,7 @@
 }
 
 /* Tablet ve altı görünüm için */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .headerCine {
     flex-direction: row;
     justify-content: space-between;
