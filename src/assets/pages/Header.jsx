@@ -26,7 +26,9 @@ export default function Header() {
   return (
     <header className={styles.headerCine}>
       <div className={styles.logo}>
-        <span className="emoji">🎥</span>
+        <Link to="/" className={styles.emoji}>
+          🎥
+        </Link>
         <Link to="/" className={styles.logoText}>
           {"CinePlus".split("").map((char, index) => (
             <span
@@ -41,7 +43,6 @@ export default function Header() {
       </div>
 
       <div className={styles.rightContainer}>
-        {/* Yatay Menü - sadece PC görünümünde aktif olacak */}
         <div className={styles.headerLink}>
           <NavLink
             to="/"
@@ -111,7 +112,7 @@ export default function Header() {
             onClick={() => navigate("/login")}
             title="Login/Register"
           >
-            <FaUser color="white" size={24} />
+            <FaUser color="gray" size={24} />
           </span>
         )}
       </div>
