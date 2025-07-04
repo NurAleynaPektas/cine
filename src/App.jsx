@@ -12,6 +12,8 @@ import Register from "./assets/pages/Register";
 import PrivateRoute from "./assets/pages/PrivateRoute";
 import Login from "./assets/pages/Login";
 import Header from "./assets/pages/Header";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 
 function Loader() {

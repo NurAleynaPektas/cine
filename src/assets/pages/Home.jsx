@@ -41,7 +41,7 @@ export default function Home() {
 
     async function loadTopRatedMovies() {
       const topRated = await fetchTopRatedMovies();
-      setTopRatedMovies(topRated.slice(0, 6));
+      setTopRatedMovies(topRated.slice(0, 12)); // slider için biraz daha fazla göster
     }
 
     loadMovies();
@@ -127,40 +127,41 @@ export default function Home() {
         </Slider>
       </div>
 
-      {/* Top Rated */}
+      {/* Top Rated Slider */}
       <h2 className="home-movie-title">Top Rated Movies</h2>
-      <div className="home-top-rated-container">
-        {topRatedMovies.map((movie) => (
-          <div
-            key={movie.id}
-            className="top-rated-card"
-            onClick={async () => {
-              const key = await fetchTrailer(movie.id);
-              setTopRatedTrailerKey(key);
-              setIsTopRatedModalOpen(true);
-            }}
-            style={{ cursor: "pointer" }}
-          >
-            <img
-              src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-              alt={movie.title}
-              className="top-rated-image"
-            />
-            <p className="top-rated-title">{movie.title}</p>
-            <div className="top-rated-extra-info">
-              <span className="top-rated-date">
-                {new Date(movie.release_date).toLocaleDateString("en-US", {
-                  year: "numeric",
-                  month: "short",
-                  day: "numeric",
-                })}
-              </span>
-              <span className="top-rated-star">
-                ⭐ {movie.vote_average?.toFixed(1) ?? "8.5"}
-              </span>
+      <div className="top-rated-slider-container">
+        <Slider {...sliderSettings}>
+          {topRatedMovies.map((movie) => (
+            <div
+              key={movie.id}
+              className="top-rated-card"
+              onClick={async () => {
+                const key = await fetchTrailer(movie.id);
+                setTopRatedTrailerKey(key);
+                setIsTopRatedModalOpen(true);
+              }}
+            >
+              <img
+                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                alt={movie.title}
+                className="top-rated-image"
+              />
+              <p className="top-rated-title">{movie.title}</p>
+              <div className="top-rated-extra-info">
+                <span className="top-rated-date">
+                  {new Date(movie.release_date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </span>
+                <span className="top-rated-star">
+                  ⭐ {movie.vote_average?.toFixed(1) ?? "8.5"}
+                </span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </Slider>
       </div>
 
       {/* Modal - Upcoming */}
