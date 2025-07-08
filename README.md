@@ -1,12 +1,46 @@
-# React + Vite
+# 🎬 CinePlus
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CinePlus, The Movie Database (TMDB) API kullanarak en popüler, en çok oy alan ve yakında vizyona girecek filmleri listeleyen modern bir film keşif uygulamasıdır. Kullanıcılar hesap oluşturabilir, giriş yapabilir ve fragmanları izleyebilir.
 
-Currently, two official plugins are available:
+## 🚀 Canlı Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🔗 [CinePlus'i şimdi keşfet!](https://cine-flax.vercel.app)
 
-## Expanding the ESLint configuration
+## 📸 Ekran Görüntüleri
+![cineImageee](https://github.com/user-attachments/assets/20ef82d0-6037-42ea-897d-e1c72270ae39)
+![cineImage](https://github.com/user-attachments/assets/d78a359b-21c9-40e4-a9d6-be61a7452e06)
+![cineImagee](https://github.com/user-attachments/assets/d1396e39-4358-4fdb-ba53-5ca2edd66820)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+## 🛠️ Kullanılan Teknolojiler
+
+- React + Vite
+- React Router
+- Redux Toolkit
+- Axios
+- TMDB API
+- JWT Authentication
+- CSS Modules
+
+## 🔐 Özellikler
+
+- Kullanıcı kayıt ve giriş sistemi (JWT ile)
+- Giriş yaptıktan sonra kullanıcı ismi ile karşılama
+- Trend, Top Rated ve Upcoming filmleri slider ile listeleme
+- Film detay modali ve fragman oynatma
+- Responsive tasarım
+
+## 🔧 Kurulum
+
+```bash
+git clone https://github.com/NurAleynaPektas/cine.git
+cd cine
+npm install
+npm run dev
+
+👩‍💻 Geliştirici
+Nur Aleyna Pektaş
+📍 İstanbul, Türkiye
+💼 LinkedIn
+📫 Email: nuraleynaaaa@gmail.com
