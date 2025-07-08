@@ -12,7 +12,6 @@ export default function Header() {
     const onStorageChange = () => {
       setToken(localStorage.getItem("token"));
     };
-
     window.addEventListener("storage", onStorageChange);
     return () => window.removeEventListener("storage", onStorageChange);
   }, []);
@@ -43,67 +42,53 @@ export default function Header() {
       </div>
 
       <div className={styles.rightContainer}>
-        <div className={styles.headerLink}>
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
-            }
-          >
-            HOME
-          </NavLink>
+        {/* HOME HER ZAMAN GÖRÜNÜR */}
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
+          }
+        >
+          HOME
+        </NavLink>
 
-          {token && (
-            <>
-              <NavLink
-                to="/catalog"
-                className={({ isActive }) =>
-                  isActive
-                    ? `${styles.navItem} ${styles.active}`
-                    : styles.navItem
-                }
-              >
-                CATALOG
-              </NavLink>
-              <NavLink
-                to="/library"
-                className={({ isActive }) =>
-                  isActive
-                    ? `${styles.navItem} ${styles.active}`
-                    : styles.navItem
-                }
-              >
-                LIBRARY
-              </NavLink>
-              <span
-                onClick={handleLogout}
-                className={styles.navItem}
-                style={{
-                  cursor: "pointer",
-                  userSelect: "none",
-                  backgroundColor: "#e50914",
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyPress={(e) => {
-                  if (e.key === "Enter" || e.key === " ") handleLogout();
-                }}
-              >
-                LOGOUT
-              </span>
-            </>
-          )}
-        </div>
-
+        {/* DİĞER LİNKLER SADECE TOKEN VARSA */}
         {token && (
-          <div
-            className={styles.hamburger}
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
+          <div className={styles.headerLink}>
+            <NavLink
+              to="/catalog"
+              className={({ isActive }) =>
+                isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
+              }
+            >
+              CATALOG
+            </NavLink>
+            <NavLink
+              to="/library"
+              className={({ isActive }) =>
+                isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
+              }
+            >
+              LIBRARY
+            </NavLink>
+            <span
+              onClick={handleLogout}
+              className={styles.navItem}
+              style={{ backgroundColor: "#e50914", cursor: "pointer" }}
+            >
+              LOGOUT
+            </span>
+          </div>
+        )}
+
+        {/* HAMBURGER */}
+        {token && (
+          <div className={styles.hamburger} onClick={() => setIsMenuOpen(true)}>
             ☰
           </div>
         )}
 
+        {/* USER ICON */}
         {!token && (
           <span
             className={styles.userIcon}
@@ -117,8 +102,14 @@ export default function Header() {
 
       {/* MODAL MENÜ */}
       {token && isMenuOpen && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               className={styles.closeBtn}
               onClick={() => setIsMenuOpen(false)}
@@ -152,10 +143,7 @@ export default function Header() {
                 setIsMenuOpen(false);
               }}
               className={styles.navItem}
-              style={{
-                backgroundColor: "#e50914",
-                cursor: "pointer",
-              }}
+              style={{ backgroundColor: "#e50914", cursor: "pointer" }}
             >
               LOGOUT
             </span>

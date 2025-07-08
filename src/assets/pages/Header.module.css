@@ -29,11 +29,13 @@
   opacity: 0;
   animation: dropIn 0.5s ease forwards;
 }
+
 .emoji {
   cursor: pointer;
   text-decoration: none;
   font-size: 34px;
 }
+
 @keyframes dropIn {
   0% {
     opacity: 0;
@@ -55,6 +57,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .navItem {
@@ -79,33 +82,19 @@
 }
 
 .userIcon {
-  margin-top: 5px;
   font-size: 24px;
   cursor: pointer;
 }
 
-/* Hamburger menü ikonu */
+/* Hamburger */
 .hamburger {
   font-size: 28px;
   cursor: pointer;
   color: white;
-  display: none; /* Mobilde aktif olacak */
+  display: none;
 }
 
-/* Dropdown (mobil menü içeriği) */
-.dropdownMenu {
-  position: absolute;
-  top: 70px;
-  right: 10px;
-  background-color: #111;
-  border: 1px solid #e50914;
-  padding: 10px;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 1000;
-}
+/* MODAL */
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -140,18 +129,14 @@
   cursor: pointer;
 }
 
-/* Tablet ve altı görünüm için */
+/* Responsive */
 @media (max-width: 1000px) {
   .headerCine {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     padding: 10px 8px;
   }
 
   .logo {
-    justify-content: flex-start;
-    letter-spacing: 2px;
+    font-size: 28px;
   }
 
   .logoText {
@@ -163,12 +148,7 @@
   }
 
   .headerLink {
-    display: none; /* Menü gizleniyor, sadece hamburger olacak */
-  }
-
-  .userIcon {
-    position: static;
-    font-size: 24px;
+    display: none;
   }
 
   .navItem {
@@ -181,7 +161,6 @@
   }
 }
 
-/* Daha küçük telefon görünümü */
 @media (max-width: 480px) {
   .navItem {
     font-size: 20px;
