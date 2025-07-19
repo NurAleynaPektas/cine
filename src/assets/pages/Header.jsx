@@ -2,6 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 import { FaUser } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -73,10 +74,11 @@ export default function Header() {
             </NavLink>
             <span
               onClick={handleLogout}
-              className={styles.navItem}
-              style={{ backgroundColor: "#e50914", cursor: "pointer" }}
+              className={styles.exit}
+            
             >
-              LOGOUT
+              <FiLogOut size={18} />
+              EXIT
             </span>
           </div>
         )}
@@ -91,7 +93,7 @@ export default function Header() {
         {/* USER ICON */}
         {!token && (
           <span
-            className={styles.userIcon }
+            className={styles.userIcon}
             onClick={() => navigate("/login")}
             title="Login/Register"
           >
@@ -142,10 +144,10 @@ export default function Header() {
                 handleLogout();
                 setIsMenuOpen(false);
               }}
-              className={styles.navItem}
-              style={{ backgroundColor: "#e50914", cursor: "pointer" }}
+              className={styles.exit}
             >
-              LOGOUT
+              <FiLogOut size={18} />
+              EXIT
             </span>
           </div>
         </div>
