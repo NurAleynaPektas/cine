@@ -91,7 +91,7 @@ export default function Header() {
         {/* USER ICON */}
         {!token && (
           <span
-            className={styles.userIcon}
+            className={styles.userIcon }
             onClick={() => navigate("/login")}
             title="Login/Register"
           >

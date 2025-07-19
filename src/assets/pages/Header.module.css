@@ -68,7 +68,7 @@
   padding: 8px 12px;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .navItem:hover {
@@ -84,6 +84,9 @@
 .userIcon {
   font-size: 24px;
   cursor: pointer;
+}
+.userIcon:hover {
+  opacity: 0.8;
 }
 
 /* Hamburger */
