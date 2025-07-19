@@ -145,6 +145,10 @@
   font-size: 20px;
   background-color: rgb(106, 110, 110);
 }
+
+.exit:hover {
+  opacity: 0.8;
+}
 /* Responsive */
 @media (max-width: 1000px) {
   .headerCine {
