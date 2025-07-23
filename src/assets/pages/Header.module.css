@@ -85,44 +85,52 @@
   font-size: 24px;
   cursor: pointer;
 }
+
 .userIcon:hover {
   opacity: 0.8;
 }
 
-/* Hamburger */
+/* Hamburger button olarak düzenlendi */
 .hamburger {
   font-size: 28px;
   cursor: pointer;
   color: white;
   display: none;
+  background: none;
+  border: none;
 }
 
-/* MODAL */
-.modalOverlay {
+/* Yan Menü Overlay - sayfa tamamı kaplar, yarı saydam */
+.sideMenuOverlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(10, 10, 25, 0.8);
+  background: rgba(10, 10, 25, 0.6);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-end; /* Menü sağdan açılır */
   z-index: 1000;
 }
 
-.modalContent {
+/* Yan Menü Paneli */
+.sideMenuContent {
   background-color: #111;
-  padding: 30px;
-  border-radius: 12px;
-  border: 2px solid #e50914;
+  width: 35%; /* Menü genişliği, ihtiyaca göre %40-60 arası değiştirilebilir */
+  max-width: 320px;
+  height: 100vh;
+  padding: 30px 20px;
+  border-left: 2px solid #e50914;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  width: 80%;
-  max-width: 400px;
+
+  /* Animasyon */
+  transform: translateX(0);
+  transition: transform 0.3s ease;
 }
 
+/* Kapatma butonu */
 .closeBtn {
   align-self: flex-end;
   background: none;
@@ -131,6 +139,8 @@
   color: white;
   cursor: pointer;
 }
+
+/* Exit (Çıkış) butonu stili */
 .exit {
   display: flex;
   align-items: center;
@@ -149,7 +159,10 @@
 .exit:hover {
   opacity: 0.8;
 }
-/* Responsive */
+
+/* Responsive Tasarım */
+
+/* 1000px altı için hamburger görünür, linkler gizlenir, logoText gizlenir */
 @media (max-width: 1000px) {
   .headerCine {
     padding: 10px 8px;
@@ -179,22 +192,40 @@
   .active {
     font-size: 18px;
   }
+
   .exit {
     font-size: 16px;
     width: 20%;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
+  .sideMenuContent {
+    width: 35%; /* Menü genişliği, ihtiyaca göre %40-60 arası değiştirilebilir */
+  }
+  .navItem {
+    font-size: 25px;
+
+  }
+  .exit {
+    font-size: 18px;
+    width: 35%;
+    background-color: #e50914;
+  }
+  
+}
+
+/* 400px altı için yan menü genişliği %80 */
+@media (max-width: 400px) {
+  .sideMenuContent {
+    width: 40%;
+  }
   .navItem {
     font-size: 20px;
   }
-
-  .active {
-    font-size: 16px;
-  }
   .exit {
     font-size: 16px;
-    width: 30%;
+    width: 50%;
+    background-color: #e50914;
   }
 }

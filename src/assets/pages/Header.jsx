@@ -23,6 +23,26 @@ export default function Header() {
     navigate("/login");
   };
 
+  // ESC ile menüyü kapatma için (isteğe bağlı)
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.key === "Escape") setIsMenuOpen(false);
+    };
+    if (isMenuOpen) {
+      window.addEventListener("keydown", handleEsc);
+    }
+    return () => window.removeEventListener("keydown", handleEsc);
+  }, [isMenuOpen]);
+
+  // Yan menü açıkken sayfa scroll kapatma (isteğe bağlı)
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isMenuOpen]);
+
   return (
     <header className={styles.headerCine}>
       <div className={styles.logo}>
@@ -72,11 +92,7 @@ export default function Header() {
             >
               LIBRARY
             </NavLink>
-            <span
-              onClick={handleLogout}
-              className={styles.exit}
-            
-            >
+            <span onClick={handleLogout} className={styles.exit}>
               <FiLogOut size={18} />
               EXIT
             </span>
@@ -85,9 +101,13 @@ export default function Header() {
 
         {/* HAMBURGER */}
         {token && (
-          <div className={styles.hamburger} onClick={() => setIsMenuOpen(true)}>
+          <button
+            className={styles.hamburger}
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Open menu"
+          >
             ☰
-          </div>
+          </button>
         )}
 
         {/* USER ICON */}
@@ -102,19 +122,20 @@ export default function Header() {
         )}
       </div>
 
-      {/* MODAL MENÜ */}
+      {/* YAN MENÜ */}
       {token && isMenuOpen && (
         <div
-          className={styles.modalOverlay}
+          className={styles.sideMenuOverlay}
           onClick={() => setIsMenuOpen(false)}
         >
           <div
-            className={styles.modalContent}
+            className={styles.sideMenuContent}
             onClick={(e) => e.stopPropagation()}
           >
             <button
               className={styles.closeBtn}
               onClick={() => setIsMenuOpen(false)}
+              aria-label="Close menu"
             >
               ✕
             </button>
